@@ -4,4 +4,13 @@
 	max-width:1200px;
 	margin-left: auto;
 	margin-right: auto;
+
+	&--medium {
+		max-width: 976px;
+	}
+	/* we don't want nested padding to take place, so remove it for nested elements */
+	.wrapper {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
