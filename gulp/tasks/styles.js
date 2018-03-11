@@ -10,5 +10,9 @@ gulp.task('styles', function() {
 	// move water in pipe from point a to b, and manipulate
 	return gulp.src('./app/assets/styles/styles.css')
 	.pipe(postcss([cssImport, cssvars, nested, autoprefixer]))
+	.on('error', function(errorInfo) {
+		console.log(errorInfo.toString());
+		this.emit('end');
+	})
 	.pipe(gulp.dest('./app/temp/styles'));
 });
