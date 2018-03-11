@@ -3,6 +3,9 @@
 	
 	/* & is equivalent to .large-hero, so we can nest css so we can avoid descendant selectors
 	which create specificity wars */
+	/* rem should be used for font size, padding or margin */
+	/* rem is relative to the root of the page, will take font size of html page and 
+	multiply that font by 1.5, usually 16px so 16*1.5 would be 24px if we put 1.5rem */
 	&__text-content {
 		position: absolute;
 		top: 50%;
@@ -14,12 +17,23 @@
 
 	&__title {
 		font-weight: 300;
-		color: #2f5572;
+		color: $mainBlue;
 		font-size: 4.8rem;
+		margin: 0;
 	}
 	&__subtitle {
 		font-weight: 300;
-		color: #2f5572;
+		color: $mainBlue;
 		font-size: 2.9rem;
+		margin: 0;
+	}
+	&__description {
+		color: #FFF;
+		font-size: 1.875rem; /* equivalent to 30 pixels if browser is set to 16px by default */
+		font-weight: 100;
+		text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);
+		max-width: 30rem; /* break text onto a second line after it reaches 480 px, 480/16 = rem */
+		margin-left: auto; /* make it centered on page horizontally */
+		margin-right: auto; /* make it centered on page horizontally */
 	}
 }
