@@ -21,6 +21,10 @@ gulp.task('watch', function() {
 		// gulp.start('styles');
 		gulp.start('cssInject');
 	});
+
+	watch('./app/assets/scripts/**/*.js', function() {
+		gulp.start('scriptsRefresh');
+	});
 });
 
 // anytime we save a change to any css file, we are triggering the css inject task
@@ -30,4 +34,9 @@ gulp.task('cssInject', ['styles'], function() {
 	// method to make available to the browser
 	return gulp.src("./app/temp/styles/styles.css")
 	.pipe(browserSync.stream());
+});
+
+// won't begin until scripts task has completed
+gulp.task('scriptsRefresh', ['scripts'], function() {
+	browserSync.reload();
 });
