@@ -1,12 +1,46 @@
 .large-hero {
 	position:relative;
+	
+	/* & is equivalent to .large-hero, so we can nest css so we can avoid descendant selectors
+	which create specificity wars */
+	&__text-content {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+
+	&__title {
+		font-weight: 300;
+		color: #2f5572;
+		font-size: 4.8rem;
+	}
+	&__subtitle {
+		font-weight: 300;
+		color: #2f5572;
+		font-size: 2.9rem;
+	}
 }
 
-.large-hero__text-content {
+/*.large-hero__text-content {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 0;
 	width: 100%;
 	text-align: center;
-}
+}*/
+
+/*.large-hero__title {
+	font-weight: 300;
+	color: #2f5572;
+	font-size: 4.8rem;
+}*/
+
+/*.large-hero__subtitle {
+	font-weight: 300;
+	color: #2f5572;
+	font-size: 2.9rem;
+}*/
