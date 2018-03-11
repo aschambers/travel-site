@@ -4,6 +4,7 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssvars = require('postcss-simple-vars');
 var nested = require('postcss-nested');
+var cssImport = require('postcss-import');
 
 // default task, when running, we want it to do something
 gulp.task('default', function() {
@@ -18,7 +19,7 @@ gulp.task('styles', function() {
 	// console.log('watching stylesheet changes');
 	// move water in pipe from point a to b, and manipulate
 	return gulp.src('./app/assets/styles/styles.css')
-	.pipe(postcss([cssvars, nested, autoprefixer]))
+	.pipe(postcss([cssImport, cssvars, nested, autoprefixer]))
 	.pipe(gulp.dest('./app/temp/styles'));
 });
 
