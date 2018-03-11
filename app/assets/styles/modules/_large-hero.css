@@ -16,12 +16,17 @@
 	/* rem is relative to the root of the page, will take font size of html page and 
 	multiply that font by 1.5, usually 16px so 16*1.5 would be 24px if we put 1.5rem */
 	&__text-content {
+		padding-top: 88px;
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
 		left: 0;
 		width: 100%;
 		text-align: center;
+
+		@mixin atMedium {
+			padding-top: 60px;
+		}
 	}
 
 	&__title {
