@@ -15,3 +15,12 @@
 		@mixin-content;
 	}
 }
+
+@define-mixin clearfix {
+	/* add blank space to content after row div */
+	&::after {
+		content: "";
+		clear: both;
+		display:table;
+	}
+}

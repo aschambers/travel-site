@@ -1,0 +1,38 @@
+.row {
+	@mixin clearfix;
+
+	&--gutters {
+		/* give gutter parent margin to match the child and remove last gutter after text */
+		margin-right: -65px;
+	}
+
+	&--gutters > div {
+		padding-right: 65px;
+		/* web browser will honor width values, and not make second row */
+		/*box-sizing: border-box; -- not needed, in global file */
+	}
+
+	&__b-margin-until-medium {
+		margin-bottom: 1rem;
+	}
+	/* only use this column layout for screens with medium width or above, otherwise use default */
+	@mixin atMedium {
+		&__medium-4 {
+			float: left;
+			width: 33.33%;
+		}
+
+		&__medium-4--larger {
+			width: 37%;
+		}
+
+		&__medium-8 {
+			float: left;
+			width: 66.66%;
+		}
+
+		&__medium-8--smaller {
+			width: 63%;
+		}
+	}
+}

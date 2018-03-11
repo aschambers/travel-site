@@ -1,3 +1,4 @@
+/* be very selective on what goes in this file, don't want to pollute the global name space */
 body {
 	font-family: 'Roboto', sans-serif;
 	color: #333;
@@ -6,4 +7,13 @@ body {
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+* {
+	/* web browser will honor width values, and not make second row */
+	box-sizing: border-box;
+}
+
+a {
+	color: $mainOrange;
 }
