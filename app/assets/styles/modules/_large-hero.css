@@ -1,5 +1,14 @@
 .large-hero {
+	border-bottom: 10px solid $mainBlue;
 	position:relative;
+
+	&__image {
+		/* by default web browsers treat images as inline elements, meaning
+		it thinks the image is similar to a line of text, so it will leave some 
+		room for letters underneath like for the letter g, so by it being block, 
+		the gap won't be there */
+		display:block;
+	}
 	
 	/* & is equivalent to .large-hero, so we can nest css so we can avoid descendant selectors
 	which create specificity wars */
@@ -18,27 +27,27 @@
 	&__title {
 		font-weight: 300;
 		color: $mainBlue;
-		font-size: 1.1rem;
+		font-size: 2.4rem;
 		margin: 0;
 
 		/*@media (min-width: 530px) {
 			font-size:4.8rem;
 		}*/
 		@mixin atSmall {
-			font-size: 2rem;
+			font-size: 4.8rem;
 		}
 
-		@mixin atMedium {
+		/*@mixin atMedium {
 			font-size: 3.2rem;
 		}
 		@mixin atLarge {
 			font-size: 4.8rem;
-		}
+		}*/
 	}
 	&__subtitle {
 		font-weight: 300;
 		color: $mainBlue;
-		font-size: 1.1rem;
+		font-size: 1.5rem;
 		margin: 0;
 
 		@mixin atSmall {
@@ -47,11 +56,30 @@
 	}
 	&__description {
 		color: #FFF;
-		font-size: 1.875rem; /* equivalent to 30 pixels if browser is set to 16px by default */
+		font-size: 1.1rem; /* equivalent to 30 pixels if browser is set to 16px by default */
 		font-weight: 100;
 		text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);
 		max-width: 30rem; /* break text onto a second line after it reaches 480 px, 480/16 = rem */
 		margin-left: auto; /* make it centered on page horizontally */
 		margin-right: auto; /* make it centered on page horizontally */
+
+		@mixin atSmall {
+			font-size: 1.875rem;
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
