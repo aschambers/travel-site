@@ -2,10 +2,19 @@ var gulp = require('gulp');
 var svgSprite = require('gulp-svg-sprite');
 var rename = require('gulp-rename');
 var del = require('del');
+var svg2png = require('gulp-svg2png');
 
 var config = {
 	mode: {
 		css: {
+			variables: {
+				replaceSvgWithPng: function() {
+					return function(sprite, render) {
+						// replace svg with png for legacy browser support (3%)
+						return render(sprite).split('.svg').join('.png');
+					}
+				}
+			},
 			sprite: 'sprite.svg',
 			render: {
 				css: {
@@ -29,9 +38,16 @@ gulp.task('createSprite', ['beginClean'], function() {
 	.pipe(gulp.dest('./app/temp/sprite/'));
 });
 
+// don't start until createSprite has finished (this is for legacy browsers)
+gulp.task('createPngCopy', ['createSprite'], function() {
+	return gulp.src('./app/temp/sprite/css/*.svg')
+	.pipe(svg2png())
+	.pipe(gulp.dest('./app/temp/sprite/css'));
+});
+
 // createSprite needs to finish running first
-gulp.task('copySpriteGraphic', ['createSprite'], function() {
-	return gulp.src('./app/temp/sprite/css/**/*.svg')
+gulp.task('copySpriteGraphic', ['createPngCopy'], function() {
+	return gulp.src('./app/temp/sprite/css/**/*.{svg,png}')
 	.pipe(gulp.dest('./app/assets/images/sprites'));
 });
 // add squre brackets to make createSprite have to finish before this gulp task
@@ -47,4 +63,4 @@ gulp.task('endClean', ['copySpriteGraphic', 'copySpriteCSS'], function() {
 });
 
 // merge two gulp tasks into 1 task for simplicity
-gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteGraphic', 'copySpriteCSS', 'endClean']);
+gulp.task('icons', ['beginClean', 'createSprite', 'createPngCopy', 'copySpriteGraphic', 'copySpriteCSS', 'endClean']);

@@ -11272,6 +11272,7 @@ var StickyHeader = function () {
 	function StickyHeader() {
 		_classCallCheck(this, StickyHeader);
 
+		this.lazyImages = (0, _jquery2.default)(".lazyload");
 		this.siteHeader = (0, _jquery2.default)(".site-header");
 		this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title");
 		this.createHeaderWaypoint();
@@ -11279,9 +11280,24 @@ var StickyHeader = function () {
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a");
 		this.createPageSectionWaypoints();
 		this.addSmoothScrolling();
+		this.refreshWayPoints();
 	}
 
+	// fix bug with waypoints not working because of lazy loading
+	// the waypoints library attaching waypoint object to browsers global window scope
+	// it's refreshing all waypoints that exist, so don't need to implement functionality
+	// in the RevealOnScroll file
+
+
 	_createClass(StickyHeader, [{
+		key: 'refreshWayPoints',
+		value: function refreshWayPoints() {
+			// on the load event, 
+			this.lazyImages.on('load', function () {
+				Waypoint.refreshAll();
+			});
+		}
+	}, {
 		key: 'addSmoothScrolling',
 		value: function addSmoothScrolling() {
 			this.headerLinks.smoothScroll();
