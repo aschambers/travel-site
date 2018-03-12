@@ -1,11 +1,11 @@
 /* generated automatically by gulp, edit gulp/templates/sprite only */
 
 	.icon {
-		background-image: url("/assets/images/sprites/sprite-e79e95cc.svg");
+		background-image: url('../../assets/images/sprites/sprite-e79e95cc.svg');
 	}
 	/* for 3% of browser users, point towards png file */
 	.no-svg .icon {
-		background-image: url('/assets/images/sprites/sprite-e79e95cc.png');
+		background-image: url('../../assets/images/sprites/sprite-e79e95cc.png');
 	}
 	.icon--clear-view-escapes {
 		width: 144.4px;
