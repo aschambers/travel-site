@@ -31,8 +31,11 @@
 		background-color: #e0e6ef;
 
 		@mixin atLarge {
-			background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
-			background-size: cover;
+			/* only apply this css if class is lazy loaded, meaning they loaded */
+			&.lazyloaded {
+				background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+				background-size: cover;
+			}
 		}
 	}
 }
