@@ -1153,7 +1153,13 @@ a {
 	position: absolute;
 	width: 100%;
 	z-index: 2;
+	-webkit-transition: background-color 0.3s ease-out;
+	transition: background-color 0.3s ease-out;
 }
+
+.site-header--is-expanded {
+		background-color: rgba(47,85,114, 0.55);
+	}
 
 @media (min-width: 800px) {
 
@@ -1162,8 +1168,11 @@ a {
 }
 	}
 
+@media (min-width: 800px) {
+
 .site-header__btn-container {
-		float: right;
+			float: right
+	}
 	}
 
 .site-header__logo {
@@ -1195,12 +1204,89 @@ a {
 
 .site-header__menu-icon {
 		width: 20px;
-		height: 20px;
-		background-color: #FFF;
+		height: 19px;
+		/* don't want it to be just a white box, but 3 white bars */
+		/*background-color: #FFF;*/
 		position: absolute;
+		/* otherwise you won't be able to click button to close menu, because it'd be overlapped */
+		z-index: 10;
 		top: 10px;
 		right: 10px;
 	}
+
+/* don't put ; after nested css }, won't work */
+
+.site-header__menu-icon::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: #FFF;
+			-webkit-transform-origin: 0 0;
+			        transform-origin: 0 0;
+			-webkit-transition: -webkit-transform 0.3s ease-out;
+			transition: -webkit-transform 0.3s ease-out;
+			transition: transform 0.3s ease-out;
+			transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+			-webkit-transform-origin: 0 50%;
+			        transform-origin: 0 50%;
+		}
+
+.site-header__menu-icon__middle {
+			position: absolute;
+			top: 8px;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: #FFF;
+			-webkit-transition: all 0.3s ease-out;
+			transition: all 0.3s ease-out;
+		}
+
+.site-header__menu-icon::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: #FFF;
+			-webkit-transform-origin: 0 100%;
+			        transform-origin: 0 100%;
+			-webkit-transition: -webkit-transform 0.3s ease-out;
+			transition: -webkit-transform 0.3s ease-out;
+			transition: transform 0.3s ease-out;
+			transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+		}
+
+/*&__top {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: white;
+		}
+
+		&__middle {
+			position: absolute;
+			top: 8px;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: white;
+		}
+
+		&__bottom {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 20px;
+			height: 3px;
+			background-color: white;
+		}*/
 
 @media (min-width: 800px) {
 
@@ -1209,23 +1295,73 @@ a {
 	}
 	}
 
+/* target three horizontal bars to make x */
+
+.site-header__menu-icon--close-x::before {
+			-webkit-transform: rotate(45deg) scaleX(1.25);
+			        transform: rotate(45deg) scaleX(1.25);
+		}
+
+.site-header__menu-icon--close-x .site-header__menu-icon__middle {
+			opacity: 0;
+			-webkit-transform: scaleX(0);
+			        transform: scaleX(0);
+		}
+
+.site-header__menu-icon--close-x::after {
+			-webkit-transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+			        transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+		}
+
 .site-header__menu-content {
-		display:none;
+		/* hide content initially but gradually fade to opacity of 1*/
+		opacity: 0;
+		-webkit-transform: scale(1.2);
+		        transform: scale(1.2);
+		/* transition all properties or everything */
+		-webkit-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+		/* ensure hidden content can't be accidentally clicked on */
+		position: relative;
+		z-index: -10;
+		padding-top: 90px;
+		text-align: center;
 	}
 
 @media (min-width: 800px) {
 
 .site-header__menu-content {
-			display: block
+			opacity: 1;
+			z-index: 1;
+			padding-top: 0;
+			-webkit-transform: scale(1);
+			        transform: scale(1)
 	}
 	}
 
 .site-header__menu-content--is-visible {
-			display:block;
+			opacity: 1;
+			z-index: 1;
+			-webkit-transform: scale(1);
+			        transform: scale(1);
 		}
 
+.primary-nav {
+	padding-top: 10px;
+}
+
+@media (min-width: 800px) {
+
+.primary-nav {
+		padding-top: 0
+}
+	}
+
+@media (min-width: 800px) {
+
 .primary-nav--pull-right {
-		float: right;
+			float: right
+	}
 	}
 
 .primary-nav ul {
@@ -1243,8 +1379,28 @@ a {
 
 .primary-nav li {
 		list-style: none;
-		float: left;
-		padding-right: 20px;
+		display: inline-block;
+		padding-right: 7px;
+	}
+
+@media (min-width: 800px) {
+
+.primary-nav li {
+			padding-right: 20px;
+			float: left;
+			display: block
+	}
+	}
+
+.primary-nav li:last-child {
+		padding-right: 0;
+	}
+
+@media (min-width: 800px) {
+
+.primary-nav li:last-child {
+			padding-right: 20px
+	}
 	}
 
 .primary-nav a {
@@ -1253,4 +1409,16 @@ a {
 		text-decoration: none;
 		display: block;
 		padding: 12px 0;
+		padding: 5px 8px;
+		font-size: 0.8rem;
+		background-color: rgba(47,85,114, 0.5);
+	}
+
+@media (min-width: 800px) {
+
+.primary-nav a {
+			font-size: 1rem;
+			padding: 12px 0;
+			background-color: transparent
+	}
 	}
