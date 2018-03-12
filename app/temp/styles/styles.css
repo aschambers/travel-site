@@ -1164,8 +1164,14 @@ a {
 @media (min-width: 800px) {
 
 .site-header {
+		/* make navbar sticky, at top */
+		position: fixed;
 		background-color: rgba(47,85,114, 0.3)
 }
+
+		.site-header--dark {
+			background-color: rgba(23, 51, 72, 0.8);
+		}
 	}
 
 @media (min-width: 800px) {
@@ -1182,6 +1188,11 @@ a {
 		/* shrinks equally on all 4 sides of page, perfect middle */
 		-webkit-transform: translateX(-50%) scale(0.8);
 		        transform: translateX(-50%) scale(0.8);
+		/* transition smoothly */
+		-webkit-transition: -webkit-transform 0.3s ease-out;
+		transition: -webkit-transform 0.3s ease-out;
+		transition: transform 0.3s ease-out;
+		transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 		/* transform origin to top */
 		-webkit-transform-origin: 50% 0;
 		        transform-origin: 50% 0;
@@ -1195,7 +1206,13 @@ a {
 			left: auto;
 			-webkit-transform: translateX(0);
 			        transform: translateX(0)
+			
+			/* target logo only when it's a dark header */
 	}
+			.site-header--dark .site-header__logo {
+				-webkit-transform: scale(0.57);
+				        transform: scale(0.57);
+			}
 	}
 
 .site-header__logo__graphic {
