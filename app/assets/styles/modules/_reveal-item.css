@@ -1,0 +1,11 @@
+.reveal-item {
+	opacity: 0;
+	/* transition all, not just opacity, including zoom out effect */
+	transition: all 1.5s ease-out;
+
+	&--is-visible {
+		opacity: 1;
+		/* zoom out effect */
+		transform: scale(1);
+	}
+}
