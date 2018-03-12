@@ -46,7 +46,7 @@
 			
 			/* target logo only when it's a dark header */
 			.site-header--dark & {
-				transform: scale(0.57);
+				transform: scale(0.55);
 			}
 		}
 	}
